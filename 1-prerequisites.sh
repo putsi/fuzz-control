@@ -22,4 +22,4 @@ else
     mkdir /fuzz/backup
 fi
 
-# TODO Install backup to cron.hourly
+mv backup-fuzzer /etc/cron.hourly/
