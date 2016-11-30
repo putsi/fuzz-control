@@ -1,4 +1,4 @@
-inotifywait -m /fuzz/tmpfs/afl_out/fuzzer01/queue/ -e create -e moved_to |
+inotifywait -m /fuzz/tmpfs/afl_out/MASTER/queue/ -e create -e moved_to |
     while read path action file; do
         echo ""
         echo "### $(date) - FOUND NEW PATH"
