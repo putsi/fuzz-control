@@ -5,9 +5,10 @@ if [ $EUID != 0 ]; then
     exit $?
 fi
 
+apt-get -y install git build-essential inotify-tools libasan2
+
 echo "Installing/updating afl-fuzzer"
 wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz && tar xvf afl-latest.tgz && cd afl-* && make && make install && cd .. && rm -rf afl-*
-
 
 # Required by AFL-fuzzer
 echo core >/proc/sys/kernel/core_pattern
