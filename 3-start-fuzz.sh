@@ -20,7 +20,7 @@ do
     #tmux new-session -d "/fuzz/tmpfs/fuzz_slave.sh $n"
     screen -S slave$n -d -m /fuzz/tmpfs/fuzz_slave.sh $n
     echo "[*] Slave $n started"
-    sleep 0.1
+    sleep 0.5
   fi
 done
 
