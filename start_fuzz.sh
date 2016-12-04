@@ -4,6 +4,18 @@ echo ""
 echo "[-] Starting fuzzers:"
 echo ""
 
+# Make sure that tmpfs is mounted and contains required fuzzer files.
+if mountpoint -q "/fuzz/tmpfs" ; then
+    echo "Tmpfs already mounted, not mounting"
+else
+    echo "Creating and mounting tmpfs"
+    mkdir -p /fuzz/tmpfs
+    mount -t tmpfs -o size=32G tmpfs /fuzz/tmpfs
+    mkdir /fuzz/backup
+    chown -R $(logname):$(logname) /fuzz
+fi
+rsync -ar /fuzz/backup/ /fuzz/tmpfs/
+
 # Start master fuzzer
 if ! screen -list |grep -q "master"; then
   #tmux new-session -d "/fuzz/tmpfs/fuzz_master.sh"

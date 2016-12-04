@@ -1,0 +1,11 @@
+[Unit]
+Description=AFL Fuzzer controller service
+
+[Service]
+Environment=
+WorkingDirectory=/opt/afl-control
+ExecStart=/bin/sh start_fuzz.sh
+ExecStop=/bin/sh stop_fuzz.sh
+Type=forking
+User=fuzzer
+Group=fuzzer
